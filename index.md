@@ -142,6 +142,10 @@
   *@noear*
   轻之文库(www.linovel.com)是全球最大的中文轻小说网站
 
+- [笔趣阁](sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi91cGxvYWQxNjA3MTcxNjA3MDguc2l0ZWQueG1s)
+  *@Mrchen*
+  很不错的小说网站,貌似比插件中心的笔趣库更新快(对，它是笔趣库，不是笔趣阁)...
+
 <a class="a" id="a"></a>
 ## 动漫
 
