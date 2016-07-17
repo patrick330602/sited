@@ -200,11 +200,11 @@
 ## 你懂的
 
 -  [NHentai](sited://data?aHR0cDovL2QudG91a28ubW9lL25oLmQvbmguZC5zaXRlZC54bWw=) 最近不要上
--  [177漫画](www.westudio.ml/sited/177manga.sited)
--  [新神秘的本子](www.westudio.ml/sited/newmagicbook.sited)
--  [神秘的本子v3](www.westudio.ml/sited/magicbookv3.sited)
--  [少女图集](www.westudio.ml/sited/teengirlgallery.sited)
--  [短视频](www.westudio.ml/sited/shortvideo.sited)
+-  [177漫画](http://www.westudio.ml/sited/177manga.sited)
+-  [新神秘的本子](http://www.westudio.ml/sited/newmagicbook.sited)
+-  [神秘的本子v3](http://www.westudio.ml/sited/magicbookv3.sited)
+-  [少女图集](http://www.westudio.ml/sited/teengirlgallery.sited)
+-  [短视频](http://www.westudio.ml/sited/shortvideo.sited)
 
 ---
 
