@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site ver="13" debug="1" sds="http://sited.noear.org/api.3/">
+    <ua></ua>
+    <title>汗汗漫画</title>
+    <intro>...</intro>
+    <author>noear</author>
+    <key>http://www.hhxiee.cc</key>
+    <url>http://www.hhxiee.cc</url>
+    <expr>\.hhxiee\.cc|\.hhxiee\.net|\.hhcomic\.|vs20\.com|\.hanhan8\.</expr>
+    <logo></logo>
+    <encode>gb18030</encode>
+	<main dtype="1" durl="http://www.hhxiee.cc">
+		<home>
+			<hots  cache="1d"  title="热门" method="get"  parse="hots_parse" url="http://www.hhxiee.cc">
+				<updates parse="updates_parse" />
+			</hots>
+			<updates title="更新" />
+			<tags  title="分类" method="get"  parse="tags_parse">
+				<item group="题材" title="萌萌" url="http://www.hhxiee.cc/hhlist/1/@page.htm" />
+				<item title="搞笑" url="http://www.hhxiee.cc/hhlist/2/@page.htm" />
+				<item title="格斗" url="http://www.hhxiee.cc/hhlist/3/@page.htm" />
+				<item title="科幻" url="http://www.hhxiee.cc/hhlist/4/@page.htm" />
+				<item title="剧情" url="http://www.hhxiee.cc/hhlist/5/@page.htm" />
+				<item title="侦探" url="http://www.hhxiee.cc/hhlist/6/@page.htm" />
+				<item title="竞技" url="http://www.hhxiee.cc/hhlist/7/@page.htm" />
+				<item title="魔法" url="http://www.hhxiee.cc/hhlist/8/@page.htm" />
+				<item title="神鬼" url="http://www.hhxiee.cc/hhlist/9/@page.htm" />
+				<item title="校园" url="http://www.hhxiee.cc/hhlist/10/@page.htm" />
+				<item title="惊栗" url="http://www.hhxiee.cc/hhlist/11/@page.htm" />
+				<item title="厨艺" url="http://www.hhxiee.cc/hhlist/12/@page.htm" />
+				<item title="百合" url="http://www.hhxiee.cc/hhlist/13/@page.htm" />
+				<item title="图片" url="http://www.hhxiee.cc/hhlist/14/@page.htm" />
+				<item title="冒险" url="http://www.hhxiee.cc/hhlist/15/@page.htm" />
+				<item title="小说" url="http://www.hhxiee.cc/hhlist/19/@page.htm" />
+				<item title="耽美" url="http://www.hhxiee.cc/hhlist/21/@page.htm" />
+				<item title="经典" url="http://www.hhxiee.cc/hhlist/22/@page.htm" />
+				<item group="地区" title="港漫" url="http://www.hhxiee.cc/hhlist/20/@page.htm" />
+				<item title="欧美" url="http://www.hhxiee.cc/hhlist/23/@page.htm" />
+				<item title="日文" url="http://www.hhxiee.cc/hhlist/24/@page.htm" />
+			</tags>
+		</home>
+		<search cache="1d" method="get"  parse="search_parse" url="http://somanhua.com/?key=@key&amp;PageIndex=@page" />
+		<tag  cache="0" addPage="1" method="get"  parse="tags_parse" />
+		<book   cache="1d"  method="get"  parse="book_parse" expr="\/comic\/" buildWeb="book_web" buildUrl="book_url" buildKey="book_key"/>
+		<section cache="1" method="get"  parse="section_parse" header="cookie;referer" buildWeb="section_web" buildKey="section_key"/>
+    </main>
+    <jscript>
+		<code>
+        <![CDATA[
+function home(url) {
+	return "http://www.hhxiee.cc";
+}
+function hots_parse(url,html) {
+	var list = [];
+    var reg  = /<div.id=.in(hh|11).>\s*<a.href=.([^\"]*).[^>]*>\s*<img.src=.([^\"]*)..alt=.([^\"]*)./gi;
+
+	var rst;
+	while((rst = reg.exec(html))!=null){
+		var bm = {};
+		bm.name= rst[4];
+		bm.url = home()+rst[2];
+		bm.logo = rst[3].replace("/imgs","/img");
+
+		list.push(bm);
+	}
+    return JSON.stringify(list);
+}
+
+function updates_parse(url,html) {
+    var list = [];
+    var reg  = /<table([^>]*>){3}[^<]*<a.href=.([^\"]*).[^>]*>([^<]*)<\/a>\s*<font([^>]*>){2}([^<]*)([^>]*>){4}\s*(<img[^>]*>)?([^>]*>){2}([^<]*)/gi;
+
+	var rst;
+	while((rst = reg.exec(html))!=null){
+		var bm = {};
+		bm.name= rst[3];
+		bm.url = rst[2];
+		if(bm.url.substr(0,4)!="http"){
+			bm.url = home()+bm.url;
+		}
+		bm.updateTime = rst[9];
+		bm.newSection = rst[5];
+
+		list.push(bm);
+	}
+    return JSON.stringify(list);
+}
+
+function search_parse(url,html) {
+    var list = [];
+	var reg = /<a.target=._blank..href=.([^']*).><img.src=.([^']*).><br>([^<]*)([^>]*>){3}([^<]*)([^>]*>){2}([^<]*)/gi;
+
+	var rst;
+	while((rst = reg.exec(html))!=null){
+		var bm = {};
+		bm.name = rst[3];
+		bm.url = book_url(rst[1]);
+		bm.logo = rst[2];
+		bm.newSection = rst[7];
+		bm.updateTime = "";
+		bm.status = rst[5];
+		list.push(bm);
+	}
+	return JSON.stringify(list);
+}
+
+function tags_parse(url,html) {
+	var list = [];
+	var reg = /<li.class=.list_small.><a.href=.([^\"]*)..title=.([^\"]*).><img.src=([^\"\s]*).alt=.([^\"]*)./gi;
+
+	var rst;
+	while((rst = reg.exec(html))!=null){
+		var bm = {};
+		bm.name = rst[2];
+		bm.url = book_url(rst[1]);
+		bm.logo = rst[3];
+		bm.newSection = rst[4].trim();
+		bm.updateTime = "";
+		if(bm.newSection.indexOf("连载")>0)
+			bm.status = "连载中";
+		else
+			bm.status = "已完结";
+		list.push(bm);
+	}
+	return JSON.stringify(list);
+}
+
+function book_parse(url,html) {
+	var data={};
+
+	var lg = html.match(/rowspan=.2.[^>]*><img.src=.([^\"]*)..alt=.([^\"]*)./i);
+
+	data.name = lg[2];
+	data.author = html.match(/作者：([^<]*?)(汗汗)?<\/b>/i)[1];
+	data.logo = lg[1];
+	data.updateTime="";
+	data.intro  = html.match(/2replh.>([^<]*)/i)[1].trim();
+	data.sections=[];
+
+	var reg = /<li><a.href=([^\s]*).[^>]*>([^<]*)/gi;
+	var rst;
+	while((rst = reg.exec(html))!=null){
+		var sm = {url:rst[1],name:rst[2]};
+		if(sm.url.substr(0,4) != "http"){
+			sm.url = home()+sm.url;
+		}
+		data.sections.push(sm);
+	}
+	return JSON.stringify(data);
+}
+
+function book_url(url) {
+	return "http://www.hhxiee.cc/comic/"+ url.match(/comic\/(\d+)/i)[1]+"/";
+}
+
+function book_web(url) {
+	return "http://m.ddmm.cc/comic/"+ url.match(/comic\/(\d+)/i)[1]+"/";
+}
+
+
+function book_key(url) {
+	return url.match(/(\d+)/i)[1];
+}
+
+function section_parse(url,html) {
+	var list = [];
+
+	var sid = parseInt(url.match(/s=(\d+)/i)[1]);
+	var urls_data =html.match(/PicL.stUrl\s*=\s*\"([^\"]*)/i)[1];
+	var urls = unsuan(urls_data,"tahfcioewrm");
+
+	var ServerList = new Array(16);
+	ServerList[0]="http://216.18.193.163:9393/dm01/";
+	ServerList[1]="http://216.18.193.163:9393/dm02/";
+	ServerList[2]="http://216.18.193.163:9393/dm03/";
+	ServerList[3]="http://216.18.193.163:9393/dm04/";
+	ServerList[4]="http://216.18.193.163:9393/dm05/";
+	ServerList[5]="http://216.18.193.163:9393/dm06/";
+	ServerList[6]="http://216.18.193.163:9393/dm07/";
+	ServerList[7]="http://216.18.193.163:9393/dm08/";
+	ServerList[8]="http://216.18.193.163:9393/dm09/";
+	ServerList[9]="http://216.18.193.163:9393/dm10/";
+	ServerList[10]="http://216.18.193.163:9393/dm11/";
+	ServerList[11]="http://216.18.193.163:9393/dm12/";
+	ServerList[12]="http://216.18.193.163:9393/dm13/";
+	ServerList[13]="http://8.8.8.8:99/dm14/";
+	ServerList[14]="http://216.18.193.163:9393/dm15/";
+	ServerList[15]="http://216.18.193.163:9393/dm16/";
+
+
+	var ary = urls.split("|");
+
+	for(var i=0;i<ary.length; i++){
+		var str = ary[i];
+		list.push(ServerList[sid-1]+str);
+	}
+
+	return JSON.stringify(list);
+}
+
+function section_key(url) {
+	return url.match(/(\d+).htm/i)[1];
+}
+
+function section_web(url) {
+	var cid = url.match(/(\d+).htm/i)[1];
+	var bid = url.match(/(\d+)\/(\d+).htm/i)[1];
+	return "http://m.ddmm.cc/vols/"+bid+"_"+cid+"/";
+}
+
+function unsuan(s,sk)
+{
+	var k=sk.substring(0,sk.length-1);
+	var f=sk.substring(sk.length-1);
+	for(var i=0;i<k.length;i++) {
+	    eval("s=s.replace(/"+ k.substring(i,i+1) +"/g,'"+ i +"')");
+	}
+    var ss = s.split(f);
+	s="";
+	for(var i=0;i<ss.length;i++) {
+	    s+=String.fromCharCode(ss[i]);
+    }
+    return s;
+}
+    ]]>
+		</code>
+    </jscript>
+</site>
