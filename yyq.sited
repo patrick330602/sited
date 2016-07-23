@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site ver="10" debug="1" sds="http://sited.noear.org/api.3/">
+    <ua></ua>
+	<key>http://www.u17.com</key>
+	<url>http://www.u17.com</url>
+	<author>noear</author>
+    <title>有妖气</title>
+    <intro>部分漫画最新集会有马赛克。更完整请到网官使用VIP观看...</intro>
+    <expr>\.u17\.com</expr>
+    <logo></logo>
+    <encode>utf-8</encode>
+    <main dtype="1">
+		<home>
+			<hots  cache="1d"  title="热门"  method="get"  parse="hots_parse" url="http://www.u17.com/ajax/more/recommend.php?page=1"/>
+			<updates cache="1d" title="更新" method="get"  parse="updates_parse" url="http://comic.u17.com/comic/ajax.php?mod=comic&amp;act=get_choiceness_comic&amp;type=0&amp;page=1" />
+			<tags   title="分类" method="get"  parse="tags_parse">
+				<item group="类型" title="少年" url="http://comic.u17.com/rank/a1_r2_t1_p@page.html" />
+				<item title="少女" url="http://comic.u17.com/rank/a1_r2_t2_p@page.html" />
+				<item title="四格绘本" url="http://comic.u17.com/rank/a1_r2_t13_p@page.html" />
+				
+				<item group="题材" title="搞笑" url="http://comic.u17.com/rank/a1_r2_t5_p@page.html" />
+				<item title="魔幻" url="http://comic.u17.com/rank/a1_r2_t6_p@page.html" />
+				<item title="生活" url="http://comic.u17.com/rank/a1_r2_t7_p@page.html" />
+				<item title="恋爱" url="http://comic.u17.com/rank/a1_r2_t8_p@page.html" />
+				<item title="动作" url="http://comic.u17.com/rank/a1_r2_t9_p@page.html" />
+				<item title="科幻" url="http://comic.u17.com/rank/a1_r2_t10_p@page.html" />
+				<item title="恐怖" url="http://comic.u17.com/rank/a1_r2_t11_p@page.html" />
+				<item title="故事" url="http://comic.u17.com/rank/a1_r2_t12_p@page.html" />
+				<item title="同人" url="http://comic.u17.com/rank/a1_r2_t4_p@page.html" />
+				<item title="耽美" url="http://comic.u17.com/rank/a1_r2_t3_p@page.html" />
+				
+			</tags>
+		</home>
+        <search cache="1d" method="get"  parse="search_parse" url="http://so.u17.com/all/@key/m0_p@page.html" />
+		<tag  cache="0" addPage="1" method="get"  parse="tags_parse" />
+		<book  cache="1d" method="get"  parse="book_parse"  expr="\/comic\/"   buildUrl="book_url" buildKey="book_key"/>
+		<section  cache="1" method="get"  parse="section_parse" buildKey="section_key"/>
+    </main>
+    <jscript>
+		<code>
+        <![CDATA[
+
+
+function hots_parse(url,html) {
+	var list = [];
+	html = html.replace(/\\\//gi,"/");
+    var jData = JSON.parse(html);
+
+	for(var i=0,len=jData.data.length; i<len; i++)
+	{
+		var jm = jData.data[i];
+
+		if(jm.url.indexOf("/comic/")<0)
+			continue;
+
+		var bm = {};
+		bm.name= unescape(jm.name);
+		bm.url = jm.url;
+		bm.logo = jm.cover;
+
+		list.push(bm);
+	}
+    return JSON.stringify(list);
+}
+
+
+function updates_parse(url,html) {
+    var list = [];
+	var jData = JSON.parse(html);
+
+	var jHtml = jData.data;
+	var reg = /ico_update[^>]*><[^>]*><a.href=.([^\"]*)[^>]*>(<[^>]*>){3}(<i[^>]*><\/i>)?([^<]*)/gi;
+
+	var today = new Date();
+	var utime = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+
+	var rst;
+	while((rst = reg.exec(jHtml)) != null)
+	{
+		var bm = {};
+		bm.name= rst[4];
+		bm.url = rst[1];
+		bm.updateTime = utime;
+
+		list.push(bm);
+	}
+    return JSON.stringify(list);
+}
+
+function search_parse(url,html) {
+    var list = [];
+    if(html.indexOf("没有找到符合您要求的结果")<0){
+		var reg = /<div.class=.cover.>\s*<a[^>]*>\s*<img.src=.([^\"]*).([^>]*>){6}[^\d]*([^<]*)([^>]*>){2}<a.href=.([^\"]*)..target=._blank..class=.u..title=.([^\"]*)/gi;
+
+		var rst;
+		while((rst = reg.exec(html))!=null){
+			var bm = {};
+			bm.name = rst[6];
+			bm.url = rst[5];
+			bm.logo = rst[1];
+			bm.newSection = "";
+			bm.updateTime = rst[3];
+			bm.status = "";
+			list.push(bm);
+		}
+	}
+	return JSON.stringify(list);
+}
+
+function tags_parse(url,html) {
+	var list = [];
+	var reg = /<dt>\s*<a.href=.([^\"]*).[^>]*>\s*<img.src=.([^\"]*)..\/>\s*<\/a>\s*<\/dt>\s*<dd>\s*<p.class=([^>]*>){2}([^<]*)([^>]*>){3}[^<]*(<a[^<]*<\/a>\s*)*([^>]*>){5}([^<]*)<\/a>\s*(\d+-\d+-\d+)/gi;
+
+	var rst;
+	while((rst = reg.exec(html))!=null){
+		var bm = {};
+		bm.name = rst[4];
+		bm.url = rst[1];
+		bm.logo = rst[2];
+		bm.newSection = rst[8].trim();
+		bm.updateTime = rst[9];
+		bm.status = "";
+
+		list.push(bm);
+	}
+	return JSON.stringify(list);
+}
+
+function book_parse(url,html) {
+	var data={};
+
+	data.name =   html.match(/<h1[^>]*>\s*([^<]*)<\/h1>/i)[1].trim();
+	data.author = html.match(/<div.class=.info.>\s*<a[^<]*>([^<]*)/i)[1];
+	data.logo = html.match(/id=.cover.>\s*<a[^>]*>\s*<img.src=.([^\"]*)./i)[1];
+	data.updateTime="";
+	data.intro  = html.match(/id=.words.>([^<]*)/i)[1].trim();
+	data.sections=[];
+
+	var reg = /<li[^>]*>\s*<a.id=.[^\"]*..href=.([^\"]*).\s*title=.([^\"]*)/gi;
+	var rst;
+	while((rst = reg.exec(html))!=null){
+		var sm = {url:rst[1],name:rst[2]};
+		sm.name = sm.name.replace(/\d+-\d+-\d+/i,"");
+
+		data.sections.splice(0,0,sm);
+	}
+	return JSON.stringify(data);
+}
+
+function book_url(url) {
+	return url;
+}
+
+function book_key(url) {
+	return url.match(/(\d+)/i)[1];
+}
+
+function section_parse(url,html) {
+	var list = [];
+
+	var json = html.match(/image_list:\s*..evalJson\('([^\)]*)'/i)[1];
+	var jData = JSON.parse(json);
+	var idx=1;
+	for(var p in jData)
+	{
+		var jm = jData[idx+""];
+		list.push(base64_decode(jm.src));
+		idx++;
+	}
+	return JSON.stringify(list);
+}
+
+function section_key(url) {
+	return url;
+}
+
+function base64_decode (data) {
+    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var o1, o2, o3, h1, h2, h3, h4, bits, i = 0, ac = 0, dec = "", tmp_arr = [];
+    if (!data) {return data;}
+    data += '';
+    do {
+        h1 = b64.indexOf(data.charAt(i++));
+        h2 = b64.indexOf(data.charAt(i++));
+        h3 = b64.indexOf(data.charAt(i++));
+        h4 = b64.indexOf(data.charAt(i++));
+        bits = h1<<18 | h2<<12 | h3<<6 | h4;
+        o1 = bits>>16 & 0xff;
+        o2 = bits>>8 & 0xff;
+        o3 = bits & 0xff;
+        if (h3 == 64) {
+            tmp_arr[ac++] = String.fromCharCode(o1);
+        } else if (h4 == 64) {
+            tmp_arr[ac++] = String.fromCharCode(o1, o2);
+        } else {
+            tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+        }
+    } while (i < data.length);
+    dec = tmp_arr.join('');
+    dec = utf8_decode(dec);
+    return dec;
+}
+
+function utf8_decode(str_data) {
+	var tmp_arr = [], i = 0, ac = 0, c1 = 0, c2 = 0, c3 = 0;
+    str_data += '';
+    while ( i < str_data.length ) {
+        c1 = str_data.charCodeAt(i);
+        if (c1 < 128) {
+            tmp_arr[ac++] = String.fromCharCode(c1);
+            i++;
+        } else if ((c1 > 191) && (c1 < 224)) {
+            c2 = str_data.charCodeAt(i+1);
+            tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
+            i += 2;
+        } else {
+            c2 = str_data.charCodeAt(i+1);
+            c3 = str_data.charCodeAt(i+2);
+            tmp_arr[ac++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+            i += 3;
+        }
+    }
+    return tmp_arr.join('');
+}
+
+
+    ]]>
+		</code>
+    </jscript>
+</site>
