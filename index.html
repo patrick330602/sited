@@ -3,7 +3,7 @@
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
 <title>index.md</title><style type='text/css'>html, body {overflow-x: initial !important;}html { font-size: 14px; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.42857; color: rgb(51, 51, 51); overflow-x: hidden; background-color: rgb(255, 255, 255); }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.42857; color: rgb(51, 51, 51); overflow-x: hidden; background-color: rgb(255, 255, 255); }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: rgb(181, 214, 252); }
 #write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; padding-bottom: 70px; white-space: pre-wrap; }
@@ -22,15 +22,20 @@ input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px;
 #write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write div, #write pre { width: inherit; }
 #write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6 { position: relative; }
 h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
 p { -webkit-margin-before: 1rem; -webkit-margin-after: 1rem; -webkit-margin-start: 0px; -webkit-margin-end: 0px; }
 .mathjax-block { margin-top: 0px; margin-bottom: 0px; -webkit-margin-before: 0rem; -webkit-margin-after: 0rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: bold; font-style: italic; }
 a { cursor: pointer; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; margin: 4px 0px 0px; }
-tr { page-break-inside: avoid; page-break-after: auto; }
+tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
-table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; page-break-inside: auto; text-align: left; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
 table.md-table td { min-width: 80px; }
 .CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
 .CodeMirror { text-align: left; }
@@ -40,14 +45,14 @@ table.md-table td { min-width: 80px; }
 div.hr:focus { cursor: none; }
 pre { white-space: pre-wrap; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences, pre.md-fences { font-size: 0.9rem; display: block; page-break-inside: avoid; text-align: left; overflow: visible; white-space: pre; position: relative !important; background: inherit; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; position: relative !important; background: inherit; }
 .md-fences .CodeMirror.CodeMirror-wrap { top: -1.6em; margin-bottom: -1.6em; }
 .md-fences.mock-cm { white-space: pre-wrap; }
-.show-fences-line-number pre.md-fences { padding-left: 0px; }
-.show-fences-line-number pre.md-fences.mock-cm { padding-left: 40px; }
+.show-fences-line-number .md-fences { padding-left: 0px; }
+.show-fences-line-number .md-fences.mock-cm { padding-left: 40px; }
 .footnotes { color: rgb(136, 136, 136); font-size: 0.9rem; padding-top: 1em; padding-bottom: 1em; }
 .footnotes + .footnotes { margin-top: -1em; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1rem; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: normal; text-align: left; box-sizing: content-box; direction: ltr; background: transparent; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; color: rgb(51, 51, 51); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: normal; text-align: left; box-sizing: content-box; direction: ltr; background: transparent; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li p, li .mathjax-block { margin: 0.5rem 0px; }
@@ -58,7 +63,7 @@ blockquote > :first-child { margin-top: 0px; }
 @media print { 
   html, body { height: 100%; }
   .typora-export * { -webkit-print-color-adjust: exact; }
-  h1, h2, h3, h4, h5, h6 { page-break-after: avoid; orphans: 2; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid-page; orphans: 2; }
   p { orphans: 4; }
   html.blink-to-pdf { font-size: 13px; }
   .typora-export #write { padding-left: 1cm; padding-right: 1cm; }
@@ -67,7 +72,7 @@ blockquote > :first-child { margin-top: 0px; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-#write pre.md-meta-block { font-size: 0.8rem; min-height: 2.86rem; white-space: pre-wrap; display: block; background: rgb(204, 204, 204); }
+pre.md-meta-block { font-size: 0.8rem; min-height: 2.86rem; white-space: pre-wrap; display: block; background: rgb(204, 204, 204); }
 p > .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .mathjax-block { white-space: pre; overflow: hidden; width: 100%; }
@@ -116,7 +121,7 @@ a.md-header-anchor.md-print-anchor { border: none !important; display: inline-bl
 html { font-size: 15px; }
 html, body { margin: auto; background: rgb(254, 254, 254); }
 body { font-family: Vollkorn, Palatino, Times; color: rgb(51, 51, 51); line-height: 1.4; text-align: justify; font-size: 19px; }
-#write { max-width: 900px; margin: 0px auto 2em; line-height: 1.53; }
+#write { max-width: 960px; margin: 0px auto 2em; line-height: 1.53; }
 #write > h2:first-child, #write > h3:first-child, #write > h4:first-child, #write > p:first-child { margin-top: 1.2em; }
 #write > h1:first-child, h1 { margin-top: 1.6em; font-weight: normal; }
 h1 { font-size: 3em; }
@@ -130,12 +135,12 @@ ul { list-style: square; padding-left: 1.2em; }
 ol { padding-left: 1.2em; }
 blockquote { margin-left: 1em; padding-left: 1em; border-left-width: 1px; border-left-style: solid; border-left-color: rgb(221, 221, 221); }
 code, pre { font-family: Consolas, Menlo, Monaco, monospace, serif; font-size: 0.9em; background: white; }
-pre.md-fences { margin-left: 1em; padding-left: 1em; border: 1px solid rgb(221, 221, 221); padding-bottom: 8px; padding-top: 6px; margin-bottom: 1.5em; }
+.md-fences { margin-left: 1em; padding-left: 1em; border: 1px solid rgb(221, 221, 221); padding-bottom: 8px; padding-top: 6px; margin-bottom: 1.5em; }
 a { color: rgb(36, 132, 193); text-decoration: none; }
 a:hover { text-decoration: underline; }
 a img { border: none; }
 h1 a, h1 a:hover { color: rgb(51, 51, 51); text-decoration: none; }
-hr { color: rgb(221, 221, 221); height: 1px; margin: 2em 0px; border-top-style: solid; border-top-width: 1px; border-top-color: rgb(221, 221, 221); border-bottom-style: none; border-left-width: 0px; border-right-width: 0px; }
+hr { color: rgb(221, 221, 221); height: 1px; margin: 2em 0px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(221, 221, 221); border-bottom-style: none; border-left-width: 0px; border-right-width: 0px; }
 .md-table-edit { padding-top: 4px; background: rgb(237, 237, 237); }
 table { margin-bottom: 1.33333rem; }
 table th, table td { padding: 8px; line-height: 1.33333rem; vertical-align: top; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(221, 221, 221); }
@@ -149,7 +154,7 @@ table tbody + tbody { border-top-width: 2px; border-top-style: solid; border-top
 .task-list-item input:checked::before, .task-list-item input[checked]::before { color: inherit; }
 .md-tag { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
 #write pre.md-meta-block { min-height: 35px; padding: 0.5em 1em; }
-#write pre.md-meta-block { white-space: pre; border-width: 0px 1000px; color: rgb(153, 153, 153); border-left-color: rgb(248, 248, 248); border-left-style: solid; margin: -1.33333rem -1000px 2em; border-right-color: rgb(248, 248, 248); border-right-style: solid; padding-top: 26px; padding-bottom: 10px; line-height: 1.8em; font-size: 0.76em; padding-left: 0px; background: rgb(248, 248, 248); }
+#write pre.md-meta-block { white-space: pre; border-width: 0px 1000px; color: rgb(153, 153, 153); border-left-style: solid; border-left-color: rgb(248, 248, 248); margin: -1.33333rem -1000px 2em; border-right-style: solid; border-right-color: rgb(248, 248, 248); padding-top: 26px; padding-bottom: 10px; line-height: 1.8em; font-size: 0.76em; padding-left: 0px; background: rgb(248, 248, 248); }
 .md-img-error.md-image > .md-meta { vertical-align: bottom; }
 #write > h5.md-focus::before { top: 2px; }
 .md-toc { margin-top: 40px; }
@@ -168,7 +173,9 @@ table tbody + tbody { border-top-width: 2px; border-top-style: solid; border-top
 </style>
 </head>
 <body class='typora-export ' >
-<div  id='write'  class = 'is-node'><h1><a name='header-c1521' class='md-header-anchor '></a>WE.Sited</h1><h3><a name='header-c1523' class='md-header-anchor '></a><a href='#o'>官方</a>   <a href='#sited'>.Sited</a></h3><hr /><p><a class="o" id="o"></a></p><h2><a name='header-c1526' class='md-header-anchor '></a>官方</h2><p><a href='sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTAwNS5zaXRlZC54bWw='>有妖气</a>
+<div  id='write'  class = 'is-node'><h1><a name='header-c1' class='md-header-anchor '></a>WE.Sited</h1><h3><a name='header-c6' class='md-header-anchor '></a><a href='#o'>官方</a>   <a href='#sited'>.Sited</a></h3><hr /><p><a class="o" id="o"></a></p><h2><a name='header-c9' class='md-header-anchor '></a>官方</h2><p><a href='sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTA0MS5zaXRlZC54bWw='>东方二次元</a>
+<em>@东方二次元</em>
+动漫产业联盟 | Oriental ACG，正版授权，IP运营</p><hr /><p><a href='sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTAwNS5zaXRlZC54bWw='>有妖气</a>
 <em>@noear</em>
 [漫画]部分漫画最新集会有马赛克，更完整请到网官使用VIP观看...</p><hr /><p><a href='sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTAwNy5zaXRlZC54bWw='>精明眼</a>
 <em>@noear</em>
@@ -260,9 +267,10 @@ Read Free Manga Online at Ten Manga</p><hr /><p><a href='sited://data/?aHR0cDovL
 全球華人動漫狂熱! Hot New Free Comic and Anime Download</p><hr /><p><a href='sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi91cGxvYWQxNjA3MTcxNDA3NTkuc2l0ZWQueG1s'>MangaFreeOnline</a>
 <em>@Mrchen</em>
 [图片]一个外文的漫画网站，资源丰富...</p><hr /><p><a href='sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi91cGxvYWQxNjA3MTcxNjA3MDguc2l0ZWQueG1s'>笔趣阁</a>
-<em>@Mrchen</em>
-[小说]很不错的小说网站,貌似比插件中心的笔趣库更新快(对，它是笔趣库，不是笔趣阁)...</p><hr /><p><a href='sited://data?aHR0cDovL2QudG91a28ubW9lL25oLmQvbmguZC5zaXRlZC54bWw='>NHentai</a>
+<em>@Mrchen</em></p><h2><a name='header-c246' class='md-header-anchor '></a>[小说]很不错的小说网站,貌似比插件中心的笔趣库更新快(对，它是笔趣库，不是笔趣阁)...</h2><p><a href='sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi91cGxvYWQxNjA3MjUyMTA3MjYuc2l0ZWQueG1s'>虎虎漫画</a>
+<em>Seiko</em>
+汗汗的镜像站点，搜索直接跳转到汗汗去了，没法添加。没啥实际用处，不过都写得差不多了怪心疼的还是发上来吧。</p><hr /><p><a href='sited://data?aHR0cDovL2QudG91a28ubW9lL25oLmQvbmguZC5zaXRlZC54bWw='>NHentai</a>
 <em>@橙橙喵</em>
-最近不要上</p><p><a class="sited" id="sited"></a></p><h2><a name='header-c1767' class='md-header-anchor '></a>.Sited</h2><ul><li><a href='http://www.westudio.ml/sited/baxi.sited'>八喜动漫</a></li><li><a href='http://www.westudio.ml/sited/yyj.sited'>有妖气</a></li><li><a href='http://www.westudio.ml/sited/hanhan.sited'>汗汗漫画</a></li><li><a href='http://www.westudio.ml/sited/jmq.sited'>精明睛</a></li><li><a href='http://www.westudio.ml/sited/smh.sited'>色漫画</a></li><li><a href='http://www.westudio.ml/sited/177manga.sited'>177漫画</a></li><li><a href='http://www.westudio.ml/sited/newmagicbook.sited'>新神秘的本子</a></li><li><a href='http://www.westudio.ml/sited/magicbookv3.sited'>神秘的本子v3</a></li><li><a href='http://www.westudio.ml/sited/teengirlgallery.sited'>少女图集</a></li><li><a href='http://www.westudio.ml/sited/shortvideo.sited'>短视频</a></li></ul><hr /><h3><a name='header-c1801' class='md-header-anchor '></a> </h3><h3><a name='header-c1802' class='md-header-anchor '></a><a href='https://github.com/patrick330602/sited/'>WE.Sited</a> | GitHub开源项目. By Patrick.</h3></div>
+最近不要上</p><p><a class="sited" id="sited"></a></p><h2><a name='header-c259' class='md-header-anchor '></a>.Sited</h2><ul><li><a href='http://www.westudio.ml/sited/baxi.sited'>八喜动漫</a></li><li><a href='http://www.westudio.ml/sited/yyj.sited'>有妖气</a></li><li><a href='http://www.westudio.ml/sited/hanhan.sited'>汗汗漫画</a></li><li><a href='http://www.westudio.ml/sited/jmq.sited'>精明睛</a></li><li><a href='http://www.westudio.ml/sited/smh.sited'>色漫画</a></li><li><a href='http://www.westudio.ml/sited/177manga.sited'>177漫画</a></li><li><a href='http://www.westudio.ml/sited/newmagicbook.sited'>新神秘的本子</a></li><li><a href='http://www.westudio.ml/sited/magicbookv3.sited'>神秘的本子v3</a></li><li><a href='http://www.westudio.ml/sited/teengirlgallery.sited'>少女图集</a></li><li><a href='http://www.westudio.ml/sited/shortvideo.sited'>短视频</a></li></ul><hr /><h3><a name='header-c293' class='md-header-anchor '></a><a href='https://github.com/patrick330602/sited/'>WE.Sited</a> | GitHub开源项目. By Patrick.</h3></div>
 </body>
 </html>
