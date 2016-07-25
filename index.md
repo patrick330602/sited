@@ -7,6 +7,12 @@
 <a class="o" id="o"></a>
 ## 官方
 
+[东方二次元](sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTA0MS5zaXRlZC54bWw=)
+*@东方二次元*
+动漫产业联盟 | Oriental ACG，正版授权，IP运营
+
+---
+
 [有妖气](sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTAwNS5zaXRlZC54bWw=)
 *@noear*
 [漫画]部分漫画最新集会有马赛克，更完整请到网官使用VIP观看...
