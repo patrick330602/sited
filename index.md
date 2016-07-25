@@ -7,6 +7,12 @@
 <a class="o" id="o"></a>
 ## 官方
 
+[东方二次元](sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTA0MS5zaXRlZC54bWw=)
+*@东方二次元*
+动漫产业联盟 | Oriental ACG，正版授权，IP运营
+
+---
+
 [有妖气](sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi9zaXRlMTAwNS5zaXRlZC54bWw=)
 *@noear*
 [漫画]部分漫画最新集会有马赛克，更完整请到网官使用VIP观看...
@@ -285,6 +291,11 @@ Read Free Manga Online at Ten Manga
 [笔趣阁](sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi91cGxvYWQxNjA3MTcxNjA3MDguc2l0ZWQueG1s)
 *@Mrchen*
 [小说]很不错的小说网站,貌似比插件中心的笔趣库更新快(对，它是笔趣库，不是笔趣阁)...
+---
+
+[虎虎漫画](sited://data/?aHR0cDovL3NpdGVkLm5vZWFyLm9yZy9hZGRpbi91cGxvYWQxNjA3MjUyMTA3MjYuc2l0ZWQueG1s)
+*Seiko*
+汗汗的镜像站点，搜索直接跳转到汗汗去了，没法添加。没啥实际用处，不过都写得差不多了怪心疼的还是发上来吧。
 
 ---
 
@@ -307,5 +318,5 @@ Read Free Manga Online at Ten Manga
 - [短视频](http://www.westudio.ml/sited/shortvideo.sited)
 
 ---
-### 
+
 ### [WE.Sited](https://github.com/patrick330602/sited/) | GitHub开源项目. By Patrick.
